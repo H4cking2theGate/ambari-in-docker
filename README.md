@@ -10,7 +10,7 @@ ambari docker镜像，版本2.7.6，测试环境centos7
 ├── init-hosts.sh         node节点依赖脚本
 └── repo   ambari hdp本地仓库镜像
 ```
-组件版本，HDP 3.3.1.0-002
+组件版本，HDP 3.3.1.0-002，如果安装全部组件，建议32G内存。安装常用组件大约会占用15G内存。下面hadoop三节点，然后关闭了hbase约15G内存
 | 组件             | 版本        | 介绍                                                                                                                                                                                                                                            |
 | -------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | HDFS           | 3.3.4     | Apache Hadoop Distributed File System                                                                                                                                                                                                         |
@@ -44,11 +44,27 @@ ambari docker镜像，版本2.7.6，测试环境centos7
 ./app.bat start
 ```
 
-访问http://127.0.0.1:18080/
+访问http://127.0.0.1:18080/，初始化配置如下
+```
+软件源地址：
+**不要勾选skip那两个复选框**
+http://172.188.0.2/HDP/centos8/3.3.1.0-002/
+http://172.188.0.2/HDP-UTILS/centos7/1.1.0.22/
 
-/然后参考https://www.cnblogs.com/startnow/p/17416314.html
+主机名称和server机器的私钥
+amb-server.hdp.link
+amb1.hdp.link
+amb2.hdp.link
+查看命令
+docker exec -it amb-server cat /root/.ssh/id_rsa
 
-# 局域网中的windows访问docker网络
+
+hive元数据默认用的是server自带的postgresql,已创建好两个库
+主机名amb-server 
+库名hive 账号hive 密码hive 在安装界面注意正确配置hive元数据使用的postgresql的jdbc url 已截图
+库名hue  账号hue  密码hue  在安装界面注意正确配置hue使用postgresql的主机名为amb-server  已截图，发现不支持最新chrome浏览器，试试360等比较旧的浏览器。
+```
+局域网中的windows访问docker网络
 ```
 如果centos7的ip是192.168.8.147
 windows 添加路由, -p永久 
