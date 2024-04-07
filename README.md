@@ -1,16 +1,16 @@
 # 介绍
 
-ambari docker镜像,测试环境centos7
+ambari docker镜像，版本2.7.6，测试环境centos7
 
 ```
 .
-├── app.sh 创建/启动/停止
+├── app.bat 创建/启动/停止
 ├── node   node节点镜像
 ├── init-ambari-server.sh node节点依赖脚本
 ├── init-hosts.sh         node节点依赖脚本
 └── repo   ambari hdp本地仓库镜像
 ```
-组件版本，HDP 3.3.1.0-002，我是从公众号：HiDataPlus下载的。
+组件版本，HDP 3.3.1.0-002
 | 组件             | 版本        | 介绍                                                                                                                                                                                                                                            |
 | -------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | HDFS           | 3.3.4     | Apache Hadoop Distributed File System                                                                                                                                                                                                         |
@@ -39,10 +39,14 @@ ambari docker镜像,测试环境centos7
 | Spark3         | 3.3.2     | Apache Spark 3.3 is a fast and general engine for large-scale data processing. This service is Technical Preview.                                                                                                                             |
 
 # quick start
+```
+./app.bat create
+./app.bat start
+```
 
-`sh app.sh create`
+访问http://127.0.0.1:18080/
 
-然后参考https://www.cnblogs.com/startnow/p/17416314.html
+/然后参考https://www.cnblogs.com/startnow/p/17416314.html
 
 # 局域网中的windows访问docker网络
 ```
